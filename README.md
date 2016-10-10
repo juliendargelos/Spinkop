@@ -1,28 +1,26 @@
-== README
+# Spinkop
+<p align="right"><sup>Projets tuteuré MMI 2016</sup></p>
+### Configuration requise
+- [Ruby](https://www.ruby-lang.org/fr/documentation/installation/)
+- [Rails 4](http://guides.rubyonrails.org/getting_started.html#installing-rails)
+- [PostgreSQL](https://www.postgresql.org)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Installation
+- Cloner le repository sur votre ordinateur
+- Exécuter ```bundle``` dans le répertoire du projet
+- Lancer postgreSQL
+- Exécuter ```rake db:create``` puis ```rake db:migrate``` dans le répertoire du projet
 
-Things you may want to cover:
+### Démarrage
+- Lancer postgreSQL
+- Lancer le serveur Rails (```rails s``` dans le répertoire du projet)
+- L'application est accessible depuis ```localhost:3000``` dans votre navigateur
 
-* Ruby version
+### En cas de problème lors du démarrage ou de l'accès à l'application
+- Exécuter ```bundle``` dans le répertoire du projet
+- S'assurer que postgreSQL est bien en fonctionnement
+- Vérifier qu'il n'y a pas de migration en attente, sinon exécuter ```rake db:migrate``` dans le répertoire du projet
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+### Précautions à prendre sur le repository
+- __Renseigner des libellés indicatifs pour vos commits__: Très bref descriptif de vos modifications
+- __Optimiser le travail de groupe__: N'écrasez pas le travail des autres membres de l'équipe, concertez-vous. Pushez uniquement sur la branche qui concerne votre travail.

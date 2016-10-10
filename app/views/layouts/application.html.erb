@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Spinkop</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+    <head>
+        <title>Spinkop</title>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+    </head>
+    <body>
 
-<%= yield %>
+        <nav>
+            <ul>
+                <li><%= link_to 'Thèmes', :themes %></li>
+                <li><%= link_to 'Questions', :questions %></li>
+                <li><%= link_to 'Articles', :articles %></li>
+            </ul>
+        </nav>
 
-</body>
+        <%= yield %>
+
+    </body>
 </html>

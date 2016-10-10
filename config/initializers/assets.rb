@@ -9,3 +9,17 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
+
+# Les assets de chaque controlleur sont chargés séparement
+
+Rails.application.eager_load!
+
+ApplicationController.descendants.each do |controller|
+	controller = controller.to_s
+	controller = controller[0, controller.length - "controller".length].downcase
+
+	Rails.application.config.assets.precompile += [
+		controller + '.css',
+		controller + '.js'
+	]
+end

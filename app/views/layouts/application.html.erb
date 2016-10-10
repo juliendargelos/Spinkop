@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Spinkop</title>
-        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-        <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <title>Spinkop<%= ' - ' + yield(:title) if content_for?(:title) %></title>
+        <%= stylesheet_link_tag controller_name, media: 'all', 'data-turbolinks-track' => true %>
         <%= csrf_meta_tags %>
     </head>
     <body>
 
-        <nav>
-            <ul>
-                <li><%= link_to 'Thèmes', :themes %></li>
-                <li><%= link_to 'Questions', :questions %></li>
-                <li><%= link_to 'Articles', :articles %></li>
-            </ul>
-        </nav>
+        <header>
+            <nav>
+                <%= link_to 'Accueil', controller: 'pages', action: 'home' %>
+                <%= link_to 'Thèmes', :themes %>
+                <%= link_to 'Questions', :questions %>
+                <%= link_to 'Articles', :articles %>
+            </nav>
+        </header>
+
+        <% if notice != nil %>
+            <div class="notice wrapper">
+                <p><%= notice %></p>
+            </div>
+        <% end %>
 
         <%= yield %>
 
+        <%= javascript_include_tag controller_name, 'data-turbolinks-track' => true %>
     </body>
 </html>

@@ -1,4 +1,8 @@
 module ApplicationHelper
+	def title text
+		content_for :title, text
+	end
+
 	def model_select model, from, property = 'name', name = nil, default = nil, multiple = false
 		options = model.all.map do |object|
 			[object[property], object.id]

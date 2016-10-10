@@ -22,5 +22,5 @@
 - Vérifier qu'il n'y a pas de migration en attente, sinon exécuter ```rake db:migrate``` dans le répertoire du projet
 
 ### Précautions à prendre sur le repository
-- __Renseigner des libellés indicatifs pour vos commits__: Très bref descriptif de vos modifications
-- __Optimiser le travail de groupe__: N'écrasez pas le travail des autres membres de l'équipe, concertez-vous. Pushez uniquement sur la branche qui concerne votre travail.
+- __Renseigner des libellés indicatifs pour vos commits:__ Très bref descriptif de vos modifications
+- __Optimiser le travail de groupe:__ N'écrasez pas le travail des autres membres de l'équipe, concertez-vous. Pushez uniquement sur la branche qui concerne votre travail.

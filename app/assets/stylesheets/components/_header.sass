@@ -1,4 +1,5 @@
 header
+	background: $brand
 	.bar
 		width: 100%
 		height: 54px
@@ -20,22 +21,22 @@ header
 			font-family: 'Raleway'
 			font-size: 20px
 			font-weight: normal
-			color: $brand
+			color: $brand-dark
 			text-transform: uppercase
 			letter-spacing: 2px
 			transition: 0.2s
 		.toggle-menu
 			width: 35px
 			height: 22px
-			border-top: 2px solid $brand
-			border-bottom: 2px solid $brand
+			border-top: 2px solid $brand-dark
+			border-bottom: 2px solid $brand-dark
 			box-sizing: border-box
 			flex-grow: 0
 			flex-shrink: 0
 			position: relative
 			&::after
 				content: ''
-				background: $brand
+				background: $brand-dark
 				width: 100%
 				height: 2px
 				top: 50%
@@ -44,7 +45,7 @@ header
 				display: block
 	&.visible
 		.bar
-			background: #d2f0fe
+			background: $brand
 			span
 				left: 0
 				opacity: 1

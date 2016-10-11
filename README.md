@@ -10,6 +10,7 @@
 - Exécuter ```bundle``` dans le répertoire du projet
 - Lancer postgreSQL
 - Exécuter ```rake db:create``` puis ```rake db:migrate``` dans le répertoire du projet
+- Pour entrer automatiquement tous thèmes en base de données, exécuter ```rake db:seed``` dans le répertoire du projet
 
 ### Démarrage
 - Lancer postgreSQL

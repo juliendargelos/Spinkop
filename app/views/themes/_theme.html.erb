@@ -1,0 +1,11 @@
+<div class="theme">
+	<a href="<%= url_for theme %>" style="background-image: url('<%= theme.picture.url(:medium) %>')">
+		<div class="overlay" style="<%= theme_gradient theme.color %>">
+			<div class="content">
+				<span class="name"><%= theme.name %></span>
+				<span class="counter"><%= theme.articles.length %> articles</span>
+				<span class="plus"></span>
+			</div>
+		</div>
+	</a>
+</div>

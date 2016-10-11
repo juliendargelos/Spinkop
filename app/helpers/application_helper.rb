@@ -2,6 +2,7 @@ module ApplicationHelper
 	ASSETS = __dir__ + '/../assets'
 	STYLESHEETS = ASSETS + '/stylesheets'
 	JAVASCRIPTS = ASSETS + '/javascripts'
+	IMAGES = ASSETS + '/images'
 
 	def title text
 		content_for :title, text
@@ -41,6 +42,37 @@ module ApplicationHelper
 
 	def defer route, path
 		"#{route}:'#{path}',"
+	end
+
+	def get_svg file
+		path = IMAGES + "/#{file}.svg"
+
+		if File.file? path
+			raw File.read path
+		end
+	end
+
+	def rgb color, alpha = nil
+		r = color[1..2].to_i(16).to_s(10)
+		g = color[3..4].to_i(16).to_s(10)
+		b = color[5..6].to_i(16).to_s(10)
+
+		if alpha == nil
+			"rgb(#{r},#{g},#{b})"
+		else
+			"rgba(#{r},#{g},#{b},#{alpha})"
+		end
+	end
+
+	def theme_gradient color, from = 1, to = 0.6
+		gradient = "linear-gradient(#{rgb color, to}, #{rgb color, from});"
+		css = "background:#{gradient}"
+
+		['webkit', 'moz', 'ms', 'o'].each do |vendor|
+			css = "background:-#{vendor}-#{gradient}#{css}"
+		end
+
+		raw css
 	end
 
 	def model_select model, from, property = 'name', name = nil, default = nil, multiple = false

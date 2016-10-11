@@ -1,7 +1,7 @@
 class Question < ActiveRecord::Base
   SEARCH_LIMIT = 10
 
-  has_many :articles
+  has_many :articles, dependent: :delete_all
   belongs_to :theme
 
   validates :theme, presence: true

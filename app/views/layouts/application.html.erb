@@ -7,17 +7,6 @@
     </head>
     <body>
 
-        <header>
-            <div class="wrapper">
-                <nav>
-                    <%= link_to 'Accueil', controller: 'pages', action: 'home' %>
-                    <%= link_to 'Thèmes', :themes %>
-                    <%= link_to 'Questions', :questions %>
-                    <%= link_to 'Articles', :articles %>
-                </nav>
-            </div>
-        </header>
-
         <% if notice != nil %>
             <div class="notice wrapper">
                 <p><%= notice %></p>
@@ -26,6 +15,8 @@
 
         <%= yield %>
 
+        <%= javascript_include_tag 'application.js', 'data-turbolinks-track' => true %>
         <%= current_javascript %>
+
     </body>
 </html>

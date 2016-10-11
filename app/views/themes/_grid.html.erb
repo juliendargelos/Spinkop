@@ -1,0 +1,5 @@
+<nav class="themes">
+	<% @themes.each do |theme| %>
+		<%= render 'themes/theme', theme: theme %>
+	<% end %>
+</nav>

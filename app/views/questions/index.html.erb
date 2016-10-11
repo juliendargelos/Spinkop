@@ -1,29 +1,31 @@
-<p id="notice"><%= notice %></p>
+<main>
+	<div class="wrapper">
+        <h1>Listing Questions</h1>
 
-<h1>Listing Questions</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Content</th>
+              <th>Theme</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th>Theme</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+          <tbody>
+            <% @questions.each do |question| %>
+              <tr>
+                <td><%= question.content %></td>
+                <td><%= question.theme.name %></td>
+                <td><%= link_to 'Show', question %></td>
+                <td><%= link_to 'Edit', edit_question_path(question) %></td>
+                <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
 
-  <tbody>
-    <% @questions.each do |question| %>
-      <tr>
-        <td><%= question.content %></td>
-        <td><%= question.theme.name %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
-        <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+        <br>
 
-<br>
-
-<%= link_to 'New Question', new_question_path %>
+        <%= link_to 'New Question', new_question_path %>
+    </div>
+</main>

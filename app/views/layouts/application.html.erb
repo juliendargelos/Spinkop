@@ -2,18 +2,20 @@
 <html>
     <head>
         <title>Spinkop<%= ' - ' + yield(:title) if content_for?(:title) %></title>
-        <%= stylesheet_link_tag controller_name, media: 'all', 'data-turbolinks-track' => true %>
+        <%= current_stylesheet %>
         <%= csrf_meta_tags %>
     </head>
     <body>
 
         <header>
-            <nav>
-                <%= link_to 'Accueil', controller: 'pages', action: 'home' %>
-                <%= link_to 'Thèmes', :themes %>
-                <%= link_to 'Questions', :questions %>
-                <%= link_to 'Articles', :articles %>
-            </nav>
+            <div class="wrapper">
+                <nav>
+                    <%= link_to 'Accueil', controller: 'pages', action: 'home' %>
+                    <%= link_to 'Thèmes', :themes %>
+                    <%= link_to 'Questions', :questions %>
+                    <%= link_to 'Articles', :articles %>
+                </nav>
+            </div>
         </header>
 
         <% if notice != nil %>
@@ -24,6 +26,6 @@
 
         <%= yield %>
 
-        <%= javascript_include_tag controller_name, 'data-turbolinks-track' => true %>
+        <%= current_javascript %>
     </body>
 </html>

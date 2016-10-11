@@ -1,19 +1,21 @@
-<p id="notice"><%= notice %></p>
+<main>
+	<div class="wrapper">
+        <p>
+          <strong>Name:</strong>
+          <%= @theme.name %>
+        </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @theme.name %>
-</p>
+        <p>
+          <strong>Picture:</strong>
+          <%= image_tag @theme.picture.url(:thumb) %>
+        </p>
 
-<p>
-  <strong>Picture:</strong>
-  <%= image_tag @theme.picture.url(:thumb) %>
-</p>
+        <p>
+          <strong>Color:</strong>
+          <%= @theme.color %>
+        </p>
 
-<p>
-  <strong>Color:</strong>
-  <%= @theme.color %>
-</p>
-
-<%= link_to 'Edit', edit_theme_path(@theme) %> |
-<%= link_to 'Back', themes_path %>
+        <%= link_to 'Edit', edit_theme_path(@theme) %> |
+        <%= link_to 'Back', themes_path %>
+    </div>
+</main>

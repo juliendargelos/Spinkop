@@ -1,1 +1,111 @@
 @import partials/_main.sass
+
+@import components/_overlay.sass
+@import components/_search.sass
+
++header-transparent
++header-static
++header-color($white)
+
+.theme
+	background-repeat: no-repeat
+	background-size: cover
+	background-position: center center
+	.overlay
+		padding: 185px 0
+	h1
+		margin-bottom: 30px
+		font-size: 40px
+		font-weight: lighter
+		color: $white
+		text-align: center
+		text-transform: uppercase
+		letter-spacing: 10px
+		line-height: 50px
+	.field.search
+		width: 100%
+		max-width: 500px
+		margin: 0 auto
+		position: relative
+		input
+			background: transparentize($white, 0.8)
+			width: 100%
+			margin: 0
+			padding: 12px
+			border: none
+			border-radius: 6px
+			box-sizing: border-box
+			outline: none
+			display: block
+			font-size: 18px
+			font-family: $raleway
+			color: transparentize($white, 0.1)
+			text-align: left
+			transition: 0.2s
+			+placeholder
+				color: transparentize($white, 0.3)
+				text-align: center
+			+prefix(backdrop-filter, blur(25px))
+			+prefix(appearance)
+			&:focus
+				background: transparentize($white, 0.65)
+		ul
+			background: none
+			margin-top: 10px
+			border: 2px solid transparentize($white, 0.8)
+			border-radius: 6px
+			box-sizing: border-box
+			z-index: 10
+			+prefix(backdrop-filter, blur(25px))
+			li
+				font-weight: bold
+				border-bottom-color: transparentize($white, 0.9)
+				border-bottom-width: 2px
+				color: transparentize($white, 0.2)
+				&.selected
+					&, &:hover
+						background: transparentize($white, 0.8)
+						border-bottom-color: transparent
+						color: transparentize($white, 0.1)
+				&:hover
+					background: transparentize($white, 0.9)
+					border-bottom-color: transparent
+					color: transparentize($white, 0.1)
+
+.questions
+	display: flex
+	flex-wrap: wrap
+	margin: 75px auto
+	div
+		width: 50%
+		padding: $wrapper-padding/2
+		box-sizing: border-box
+		&:nth-of-type(2n)
+			padding-right: 0
+		&:nth-of-type(2n+1)
+			padding-left: 0
+		&:nth-of-type(1), &:nth-of-type(2)
+			padding-top: 0
+		&:nth-last-of-type(1), &:nth-last-of-type(2)
+			padding-bottom: 0
+		a
+			padding: 15px
+			border: 2px solid $thin-grey
+			border-radius: 60px
+			display: block
+			font-size: 18px
+			color: $medium-grey
+			text-decoration: none
+			text-align: center
+			line-height: 22px
+			transition: 0.2s
+			&:hover
+				color: $white
+		+max(medium)
+			width: 100%
+			padding-left: 0
+			padding-right: 0
+			&:nth-of-type(2)
+				padding-top: $wrapper-padding/2
+			&:nth-last-of-type(2)
+				padding-bottom: $wrapper-padding/2

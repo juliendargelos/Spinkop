@@ -1,0 +1,20 @@
+<header<%= ' class="visible"'.html_safe if !defined? hero %>>
+    <% if defined? hero %>
+        <div class="hero">
+            <div class="wrapper">
+                <div class="logo">
+                    <%= get_svg('web') %>
+                </div>
+                <h1>Spinkop</h1>
+                <h2>les particules du numérique</h2>
+                <div class="arrow"></div>
+            </div>
+        </div>
+    <% end %>
+    <div class="bar">
+        <div class="wrapper">
+            <%= link_to 'Spinkop', controller: :pages, action: :home %>
+            <div class="toggle-menu open"></div>
+        </div>
+    </div>
+</header>

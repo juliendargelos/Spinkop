@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010111204) do
+ActiveRecord::Schema.define(version: 20161012120015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20161010111204) do
     t.integer  "theme_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
   end
 
   add_index "questions", ["theme_id"], name: "index_questions_on_theme_id", using: :btree
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 20161010111204) do
     t.string   "color"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+    t.string   "slug"
   end
 
   add_foreign_key "articles", "questions"

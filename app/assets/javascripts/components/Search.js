@@ -1,8 +1,9 @@
-var Search = function(element, entity, path, callback, property) {
+var Search = function(element, entity, path, callback, property, max) {
 	var self = this;
 
 	if(typeof callback != 'function') callback = function() {};
 	if(property === undefined) property = 'content';
+	if(typeof max != 'number') max = Infinity;
 
 	var selected = -1;
 
@@ -71,6 +72,15 @@ var Search = function(element, entity, path, callback, property) {
 				this.box.innerHTML = '';
 			}
 		},
+		onmousedown: {
+			value: function(offset, result) {
+				var self = this;
+				return function(event) {
+					selected = offset;
+					self.validate(event);
+				};
+			}
+		},
 		fill: {
 			value: function(result) {
 				this.clear();
@@ -80,10 +90,11 @@ var Search = function(element, entity, path, callback, property) {
 				else {
 					if(this.hidden) this.show();
 
-					for(var i = 0; i < result.length; i++) {
+					for(var i = 0; i < result.length && i < max; i++) {
 						var li = document.createElement('li');
 						li.appendChild(document.createTextNode(result[i][this.property]));
-						li.result = result[i];
+
+						li.on('mousedown', this.onmousedown(i, result));
 
 						this.box.appendChild(li);
 					}
@@ -110,6 +121,24 @@ var Search = function(element, entity, path, callback, property) {
 				this.input.blur();
 			}
 		},
+		validate: {
+			value: function(event) {
+				if(selected != -1) {
+					event.preventDefault();
+					event.stopPropagation();
+
+					options = this.options;
+
+					value = callback(options[selected].result);
+					if(value === undefined) value = options[selected].textContent;
+
+					this.value = value;
+
+					self.hide();
+					self.clear();
+				}
+			}
+		},
 		onkeydown: {
 			value: function(event) {
 				var self = this;
@@ -131,18 +160,7 @@ var Search = function(element, entity, path, callback, property) {
 						}
 						break;
 					case 13:
-						if(selected != -1) {
-							event.preventDefault();
-							event.stopPropagation();
-
-							value = callback(options[selected].result);
-							if(value === undefined) value = options[selected].textContent;
-
-							this.value = value;
-
-							self.hide();
-							self.clear();
-						}
+						self.validate(event);
 						break;
 					case 9:
 						self.hide();
@@ -175,6 +193,11 @@ var Search = function(element, entity, path, callback, property) {
 	this.element.appendChild(this.box);
 
 	this.input.setAttribute('autocomplete', 'off');
+	this.input.setAttribute('spellcheck', 'false');
+
+	this.input.on('blur', function(event) {
+		self.hide();
+	});
 
 	this.input.on('keydown', function(event) {
 		self.onkeydown(event);

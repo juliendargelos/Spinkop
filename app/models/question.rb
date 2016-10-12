@@ -1,14 +1,28 @@
 class Question < ActiveRecord::Base
-  SEARCH_LIMIT = 10
+    include HasSlug
+    slug property: :content
 
-  has_many :articles, dependent: :delete_all
-  belongs_to :theme
+    SEARCH_LIMIT = 5
+    SOME_LIMIT = 10
 
-  validates :theme, presence: true
-  validates :content, presence: true
+    has_many :articles, dependent: :delete_all
+    belongs_to :theme
 
-  def self.search(search)
-    search = search.downcase
-    where("LOWER(content) LIKE ?", "%#{search}%").limit(SEARCH_LIMIT)
-  end
+    validates :theme, presence: true
+    validates :content, presence: true
+
+    def self.search search, theme_slug = nil
+        search = search.downcase
+        theme = Theme.find_by(slug: theme_slug)
+
+        if theme == nil
+            where("LOWER(content) LIKE ?", "%#{search}%").limit(SEARCH_LIMIT)
+        else
+            where("LOWER(content) LIKE ? AND theme_id = ?", "%#{search}%", theme.id).limit(SEARCH_LIMIT)
+        end
+    end
+
+    def self.some theme
+        where("theme_id = ?", theme.id).limit(SOME_LIMIT)
+    end
 end

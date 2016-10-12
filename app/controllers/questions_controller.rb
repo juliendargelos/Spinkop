@@ -64,14 +64,14 @@ class QuestionsController < ApplicationController
 
   def search
     respond_to do |format|
-      format.json { render json: Question.search(search_params[:search]) }
+      format.json { render json: Question.search(search_params[:search], params[:theme_slug]) }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
-      @question = Question.find(params[:id])
+      @question = Question.find_by(slug: params[:slug])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

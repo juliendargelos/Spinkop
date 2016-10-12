@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-themes = Theme.create([
+Theme.create([
 	{
 		name: 'Communication',
 		color: '#5597ba',
@@ -52,4 +52,24 @@ themes = Theme.create([
 		color: '#72d4d0',
 		picture: File.new("#{Rails.root}/db/seed-files/theme-money.jpg")
 	}
-])
+]);
+
+themes = Theme.all
+
+100.times do |n|
+	theme = themes.sample
+	Question.create({
+		content: "Question #{n} du theme \"#{theme.name}\"",
+		theme: theme
+	})
+end
+
+questions = Question.all
+
+100.times do
+	Article.create({
+		content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+		question: questions.sample,
+		tags: 'tag1, tag2, tag3'
+	})
+end

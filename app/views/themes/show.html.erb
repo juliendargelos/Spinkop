@@ -1,21 +1,31 @@
+<%= render 'partials/header' %>
+
 <main>
-	<div class="wrapper">
-        <p>
-          <strong>Name:</strong>
-          <%= @theme.name %>
-        </p>
-
-        <p>
-          <strong>Picture:</strong>
-          <%= image_tag @theme.picture.url(:thumb) %>
-        </p>
-
-        <p>
-          <strong>Color:</strong>
-          <%= @theme.color %>
-        </p>
-
-        <%= link_to 'Edit', edit_theme_path(@theme) %> |
-        <%= link_to 'Back', themes_path %>
+	<div class="theme" style="<%= theme_picture @theme, :large %>">
+		<div class="overlay" style="<%= theme_gradient @theme %>">
+			<div class="wrapper">
+				<h1><%= @theme.name %></h1>
+				<div class="field search" id="search-question">
+					<input type="text" placeholder="Rechercher une question"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<nav class="questions wrapper">
+		<% @theme.someQuestions.each do |question| %>
+			<div>
+				<%= link_to question.content, controller: :questions, action: :show, slug: question.slug, theme_slug: @theme.slug %>
+			</div>
+		<% end %>
     </div>
 </main>
+
+<script type="text/javascript">
+	var theme = {
+		color: '<%= @theme.color %>'
+	};
+</script>
+
+<%= defer_routes do %>
+	<% defer :search_questions, url_for(controller: :questions, action: :search, theme_slug: @theme.slug, format: :json) %>
+<% end %>

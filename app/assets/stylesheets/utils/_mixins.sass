@@ -25,3 +25,43 @@
 =min($breakpoint)
 	+min-width(map-get($breakpoints, $breakpoint))
 		@content
+
+=prefix($property, $value: none)
+	@each $vendor in $vendors
+		-#{$vendor}-#{$property}: $value
+	#{$property}: $value
+
+=pseudo-prefix($selector)
+	@each $vendor in $vendors
+		&::-#{$vendor}-#{$selector}
+			@content
+	&::#{$selector}
+		@content
+
+=placeholder
+	+pseudo-prefix(input-placeholder)
+		@content
+	+pseudo-prefix(placeholder)
+		@content
+
+=header-transparent
+	body
+		margin-top: 0
+	header
+		&, &.visible
+			.bar
+				background: none
+
+=header-color($color)
+	header .bar
+		a
+			color: $color
+		.toggle-menu
+			border-top-color: $color
+			border-bottom-color: $color
+			&::after
+				background: $color
+
+=header-static
+	header .bar
+		position: absolute

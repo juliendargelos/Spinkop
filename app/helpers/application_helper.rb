@@ -21,13 +21,13 @@ module ApplicationHelper
 
 	def current_stylesheet type = 'sass'
 		current_asset STYLESHEETS, type do |asset|
-			stylesheet_link_tag asset, media: 'all', 'data-turbolinks-track' => true
+			stylesheet_link_tag asset, media: 'all'
 		end
 	end
 
 	def current_javascript type = 'js'
 		current_asset JAVASCRIPTS, type do |asset|
-			javascript_include_tag asset, 'data-turbolinks-track' => true
+			javascript_include_tag asset
 		end
 	end
 
@@ -64,7 +64,8 @@ module ApplicationHelper
 		end
 	end
 
-	def theme_gradient color, from = 1, to = 0.6
+	def theme_gradient theme, from = 1, to = 0.6
+		color = theme.color
 		gradient = "linear-gradient(#{rgb color, to}, #{rgb color, from});"
 		css = "background:#{gradient}"
 
@@ -73,6 +74,10 @@ module ApplicationHelper
 		end
 
 		raw css
+	end
+
+	def theme_picture theme, size = :medium
+		raw "background-image: url('#{theme.picture.url(size)}');"
 	end
 
 	def model_select model, from, property = 'name', name = nil, default = nil, multiple = false

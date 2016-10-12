@@ -10,7 +10,7 @@ var articlesForm = {
 	init: function() {
 		var self = this;
 
-		this.search = new Search(this.element, 'question', routes.search_question_path, function(result) {
+		this.search = new Search(this.element, 'question', routes.search_questions, function(result) {
 			self.callback(result);
 		});
 	}

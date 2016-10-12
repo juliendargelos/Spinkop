@@ -1,6 +1,6 @@
 <div class="theme">
-	<a href="<%= url_for theme %>" style="background-image: url('<%= theme.picture.url(:medium) %>')">
-		<div class="overlay" style="<%= theme_gradient theme.color %>">
+	<a href="<%= url_for controller: :themes, action: :show, slug: theme.slug %>" style="<%= theme_picture theme %>">
+		<div class="overlay" style="<%= theme_gradient theme %>">
 			<div class="content">
 				<span class="name"><%= theme.name %></span>
 				<span class="counter"><%= theme.articles.length %> articles</span>

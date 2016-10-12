@@ -5,6 +5,7 @@
 		width: 100%
 		border: 1px solid $grey
 		border-radius: 3px
+		overflow: hidden
 		position: absolute
 		display: none
 		box-sizing: border-box
@@ -13,9 +14,13 @@
 		li
 			padding: 12px
 			border-bottom: 1px solid $grey
+			cursor: pointer
 			font-size: 14px
 			color: $dark-grey
+			&:hover
+				background: transparentize($thin-grey, 0.5)
 			&.selected
-				background: $thin-grey
+				&, &:hover
+					background: $thin-grey
 			&:last-child
 				border: none

@@ -7,8 +7,10 @@ class Article < ActiveRecord::Base
   before_save :clean_tags
 
   def clean_tags
-    self.tags = self.tags.downcase
-    self.tags = self.tags.gsub /[^a-z0-9,]/, ''
-    self.tags = self.tags.gsub ',', ', '
+    if self.tags.is_a? String
+      self.tags = self.tags.downcase
+      self.tags = self.tags.gsub /[^a-z0-9,]/, ''
+      self.tags = self.tags.gsub ',', ', '
+    end
   end
 end

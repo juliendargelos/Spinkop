@@ -31,17 +31,46 @@ module ApplicationHelper
 		end
 	end
 
+	def short_date datetime
+		month = [
+			'Janv',
+			'Fev',
+			'Mar',
+			'Avr',
+			'Mai',
+			'Juin',
+			'Juillet',
+			'Août',
+			'Sep',
+			'Oct',
+			'Nov',
+			'Dec'
+		][datetime.strftime('%m').to_i-1]
+
+		datetime.strftime('%d')+' '+month+' '+datetime.strftime('%Y')
+	end
+
 	def defer_routes &block
 		content_tag :script, type: 'text/javascript' do
-			routes = block.call.html_safe
 			concat 'routes = {'
-			concat routes[0, routes.length - 1]
+			block.call
 			concat '};'
 		end
 	end
 
-	def defer route, path
-		"#{route}:'#{path}',"
+	def defer name, route
+		debug name.to_s
+		if route[:js_params] != nil
+			route[:js_params].each do |param|
+				route[param] = "'+#{param}+'".html_safe
+			end
+
+			#route.delete :js_params
+
+			concat "#{name}: function(#{route[:js_params].join ','}) {return '#{url_for route.except(:js_params)}';},".html_safe
+		else
+			concat "#{name}:'#{url_for route}',".html_safe
+		end
 	end
 
 	def get_svg file

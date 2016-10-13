@@ -73,7 +73,7 @@ var Search = function(element, entity, path, callback, property, max) {
 			}
 		},
 		onmousedown: {
-			value: function(offset, result) {
+			value: function(offset) {
 				var self = this;
 				return function(event) {
 					selected = offset;
@@ -93,6 +93,8 @@ var Search = function(element, entity, path, callback, property, max) {
 					for(var i = 0; i < result.length && i < max; i++) {
 						var li = document.createElement('li');
 						li.appendChild(document.createTextNode(result[i][this.property]));
+
+						li.result = result[i];
 
 						li.on('mousedown', this.onmousedown(i, result));
 

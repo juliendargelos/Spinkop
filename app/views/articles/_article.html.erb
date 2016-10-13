@@ -1,0 +1,19 @@
+<div class="wrapper">
+	<h1>
+		<span class="question" style="border-color: <%= article.theme.color %>;background: <%= article.theme.color %>;"><%= article.question.content %></span>
+		<%= link_to article.theme.name, {controller: :themes, action: :show, slug: article.theme.slug}, {class: :theme} %>
+	</h1>
+</div>
+
+<div class="article wrapper">
+	<div class="timeline">
+		<% articles.each do |a| %>
+			<%= link_to short_date(a.created_at), {controller: :articles, action: :show, theme_slug: a.theme.slug, question_slug: a.question.slug, id: a.id}, {class: article.id == a.id ? :selected : nil} %>
+		<% end %>
+	</div>
+	<div class="content">
+		<p>
+			<%= article.content %>
+		</p>
+	</div>
+</div>

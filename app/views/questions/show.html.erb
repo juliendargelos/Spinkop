@@ -1,13 +1,5 @@
-<main>
-	<div class="wrapper">
-        <p>
-          <strong>Content:</strong>
-          <%= @question.content %>
-        </p>
+<%= render 'partials/header' %>
 
-        <p>
-          <strong>Theme:</strong>
-          <%= @question.theme.name %>
-        </p>
-    </div>
+<main>
+	<%= render 'articles/article', articles: @articles, article: @article %>
 </main>

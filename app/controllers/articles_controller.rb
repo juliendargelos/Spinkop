@@ -10,6 +10,10 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+    @articles = @article.question.articles.sort { |article1, article2| article2.created_at <=> article1.created_at }
+    if @articles.first.id == @article.id
+      redirect_to controller: :questions, action: :show, theme_slug: @article.theme.slug, slug: @article.question.slug
+    end
   end
 
   # GET /articles/new

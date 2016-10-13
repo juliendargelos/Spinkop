@@ -11,10 +11,11 @@
 			</div>
 		</div>
 	</div>
+	<h2>Dernières questions</h2>
 	<nav class="questions wrapper">
 		<% @theme.someQuestions.each do |question| %>
 			<div>
-				<%= link_to question.content, controller: :questions, action: :show, slug: question.slug, theme_slug: @theme.slug %>
+				<%= link_to question.content, {controller: :questions, action: :show, slug: question.slug, theme_slug: @theme.slug}, {class: :question} %>
 			</div>
 		<% end %>
     </div>
@@ -27,5 +28,6 @@
 </script>
 
 <%= defer_routes do %>
-	<% defer :search_questions, url_for(controller: :questions, action: :search, theme_slug: @theme.slug, format: :json) %>
+	<% defer :question, controller: :questions, action: :show, theme_slug: @theme.slug, js_params: [:slug] %>
+	<% defer :search_questions, controller: :questions, action: :search, theme_slug: @theme.slug, format: :json %>
 <% end %>

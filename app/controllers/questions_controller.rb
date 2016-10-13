@@ -11,6 +11,8 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
+    @articles = @question.articles.sort { |article1, article2| article2.created_at <=> article1.created_at }
+    @article = @articles.first
   end
 
   # GET /questions/new

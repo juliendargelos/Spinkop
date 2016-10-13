@@ -1,5 +1,6 @@
 class Article < ActiveRecord::Base
   belongs_to :question
+  has_one :theme, through: :question
 
   validates :question, presence: true
   validates :content, presence: true

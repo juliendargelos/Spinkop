@@ -2,6 +2,7 @@
 
 @import components/_overlay.sass
 @import components/_search.sass
+@import components/_question.sass
 
 +header-transparent
 +header-static
@@ -72,6 +73,12 @@
 					border-bottom-color: transparent
 					color: transparentize($white, 0.1)
 
+h2
+	margin-top: 75px
+	font-size: 30px
+	font-weight: lighter
+	text-align: center
+
 .questions
 	display: flex
 	flex-wrap: wrap
@@ -88,16 +95,7 @@
 			padding-top: 0
 		&:nth-last-of-type(1), &:nth-last-of-type(2)
 			padding-bottom: 0
-		a
-			padding: 15px
-			border: 2px solid $thin-grey
-			border-radius: 60px
-			display: block
-			font-size: 18px
-			color: $medium-grey
-			text-decoration: none
-			text-align: center
-			line-height: 22px
+		.question
 			transition: 0.2s
 			&:hover
 				color: $white

@@ -1,0 +1,64 @@
+@import ../components/_question.sass
+
+main
+	padding: 50px 0
+h1
+	display: inline-block
+	.question
+		display: inline-block
+		color: $white
+	.theme
+		margin: 8px 20px 0 0
+		border-radius: 4px
+		display: block
+		font-size: 11px
+		font-weight: bold
+		color: $grey
+		text-align: right
+		text-decoration: none
+		text-transform: uppercase
+		letter-spacing: 1px
+		transition: 0.2s
+		&:hover
+			color: $medium-grey
+
+.article
+	margin-top: 20px
+	display: flex
+	align-items: flex-start
+	.timeline
+		margin-left: 60px
+		margin-top: -40px
+		padding-top: 50px
+		border-left: 3px solid $thin-grey
+		a
+			background: $white
+			width: 120px
+			height: 56px
+			margin: 25px 0 25px -60px
+			border: 3px solid $thin-grey
+			border-radius: 100px
+			box-sizing: border-box
+			display: block
+			text-align: center
+			line-height: 50px
+			font-size: 13px
+			font-weight: bold
+			color: $medium-grey
+			text-decoration: none
+			transform: scale(0.9)
+			transition: 0.12s
+			&:first-of-type
+				margin-top: -10px
+			&:last-of-type
+				margin-bottom: -10px
+			&:hover, &.selected
+				transform: scale(1)
+			&.selected
+				background: $light-grey
+				border-color: $light-grey
+				color: $white
+	.content
+		padding-left: 40px
+		font-size: 15px
+		line-height: 24px

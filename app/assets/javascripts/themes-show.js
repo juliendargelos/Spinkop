@@ -7,14 +7,14 @@ var main = {
 	searchBar: {
 		element: document.getElementById('search-question'),
 		search: null,
-		callback: function(result) {
-			console.log(result);
+		callback: function(question) {
+			window.location.href = routes.question(question.slug);
 		},
 		init: function() {
 			var self = this;
 
-			this.search = new Search(this.element, 'question', routes.search_questions, function(result) {
-				self.callback(result);
+			this.search = new Search(this.element, 'question', routes.search_questions, function(question) {
+				self.callback(question);
 			}, 'content', 4);
 		}
 	},

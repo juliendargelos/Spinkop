@@ -13,7 +13,7 @@ module HasSlug extend ActiveSupport::Concern
 		self.slug = self.slug.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n, '')
 		self.slug = self.slug.downcase
 		self.slug = self.slug.gsub(/[^A-Za-z0-9]/, '-')
-		self.slug = self.slug.gsub(/\-\-+/, '')
+		self.slug = self.slug.gsub(/\-\-+/, '-')
 		self.slug = self.slug.gsub(/\A-/, '').gsub(/-\z/, '')
 	end
 

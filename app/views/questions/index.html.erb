@@ -3,18 +3,16 @@
 
 <main>
     <div class="wrapper">
-		<h1>Listing Questions</h1>
-		<%= link_to 'Retour aux thèmes', controller: :themes, action: :index %>
+		<h1>Questions du thème "<%= @theme.name %>"</h1>
+		<%= link_to 'Retour aux thèmes', {controller: :themes, action: :index}, class: 'back' %>
 		<table>
 			<tbody>
 				<% @questions.each do |question| %>
 					<tr>
 						<td><%= question.content %></td>
-						<td>
-							<%= link_to 'Éditer', action: :edit, theme_slug: @theme.slug, slug: question.slug %>
-						</td>
-						<td>
-							<%= link_to 'Articles', controller: :articles, action: :index, theme_slug: @theme.slug, question_slug: question.slug %>
+						<td class="actions">
+							<%= link_to get_svg(:edit)+'Modifier', {action: :edit, theme_slug: @theme.slug, slug: question.slug}, title: 'Modifier' %>
+							<%= link_to get_svg(:list)+'Liste des articles', {controller: :articles, action: :index, theme_slug: @theme.slug, question_slug: question.slug}, title: 'Liste des articles' %>
 						</td>
 					</tr>
 				<% end %>

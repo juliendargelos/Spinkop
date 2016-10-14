@@ -2,8 +2,8 @@
 
 <main>
     <div class="wrapper">
-		<h1>Listing Articles</h1>
-		<%= link_to "Retour aux question du thème #{@theme.name}", controller: :questions, action: :index, theme_slug: @theme.slug, slug: @question.slug %>
+		<h1>Liste des articles</h1>
+		<%= link_to "Retour aux questions du thème #{@theme.name}", {controller: :questions, action: :index, theme_slug: @theme.slug, slug: @question.slug}, class: 'back' %>
 
 		<table>
 
@@ -11,10 +11,10 @@
 				<% @articles.each do |article| %>
 					<tr>
 						<td>
-							<%= short_date article.created_at %>
+							<%= long_date article.created_at %>
 						</td>
-						<td>
-							<%= link_to 'Éditer', controller: :articles, action: :edit, theme_slug: @theme.slug, question_slug: @question.slug, id: article.id %>
+						<td class="actions">
+							<%= link_to get_svg(:edit)+'Modifier', {controller: :articles, action: :edit, theme_slug: @theme.slug, question_slug: @question.slug, id: article.id}, title: 'Modifier' %>
 						</td>
 					</tr>
 				<% end %>

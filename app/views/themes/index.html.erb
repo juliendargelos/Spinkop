@@ -3,18 +3,16 @@
 
 <main>
     <div class="wrapper">
-		<h1>Listing Themes</h1>
+		<h1>Thèmes</h1>
 
 		<table>
 			<tbody>
 				<% @themes.each do |theme| %>
 					<tr>
 						<td><%= theme.name %></td>
-						<td>
-							<%= link_to 'Modifier', action: :edit, slug: theme.slug %>
-						</td>
-						<td>
-							<%= link_to 'Questions', controller: :questions, action: :index, theme_slug: theme.slug %>
+						<td class="actions">
+							<%= link_to get_svg(:edit)+'Modifier', {action: :edit, slug: theme.slug}, title: 'Modifier' %>
+							<%= link_to get_svg(:list)+'Liste des questions', {controller: :questions, action: :index, theme_slug: theme.slug}, title: 'Liste des questions' %>
 						</td>
 					</tr>
 				<% end %>

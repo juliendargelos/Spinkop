@@ -50,6 +50,25 @@ module ApplicationHelper
 		datetime.strftime('%d')+' '+month+' '+datetime.strftime('%Y')
 	end
 
+	def long_date datetime
+		month = [
+			'Janvier',
+			'Février',
+			'Mars',
+			'Avril',
+			'Mai',
+			'Juin',
+			'Juillet',
+			'Août',
+			'Septembre',
+			'Octobre',
+			'Novembre',
+			'Décembre'
+		][datetime.strftime('%m').to_i-1]
+
+		datetime.strftime('%d')+' '+month+' '+datetime.strftime('%Y')
+	end
+
 	def defer_routes &block
 		content_tag :script, type: 'text/javascript' do
 			concat 'routes = {'

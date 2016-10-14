@@ -1,0 +1,39 @@
+@import ../components/_admin-nav.sass
+
+main
+	padding: 30px 0
+	h1
+		margin: 0 0 20px 0
+		font-size: 30px
+		font-weight: lighter
+		color: $dark-brand
+	.back
+		margin: 0 0 20px 0
+		padding: 10px
+		border: 2px solid $thin-grey
+		border-radius: 4px
+		display: inline-block
+		color: $medium-grey
+		text-decoration: none
+		transition: 0.2s
+		&:hover
+			background: $light-grey
+			border-color: $light-grey
+			color: $white
+	table
+		width: 100%
+		td
+			border-bottom: 2px solid $thin-grey
+			padding: 15px 0
+			&.actions
+				text-align: right
+				a
+					margin-left: 5px
+					font-size: 0
+					text-decoration: none
+					svg
+						width: 16px
+						height: 16px
+						top: 2px
+						fill: $dark-brand
+						position: relative

@@ -65,8 +65,6 @@ module ApplicationHelper
 				route[param] = "'+#{param}+'".html_safe
 			end
 
-			#route.delete :js_params
-
 			concat "#{name}: function(#{route[:js_params].join ','}) {return '#{url_for route.except(:js_params)}';},".html_safe
 		else
 			concat "#{name}:'#{url_for route}',".html_safe

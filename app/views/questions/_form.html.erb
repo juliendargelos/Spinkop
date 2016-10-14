@@ -1,4 +1,10 @@
-<%= form_for(@question) do |f| %>
+<% if action_name == 'new' || action_name == 'create' %>
+    <% url = url_for controller: :questions, action: :create %>
+<% else %>
+    <% url = url_for controller: :questions, action: :update, slug: @question.slug %>
+<% end %>
+
+<%= form_for @question, url: url do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>

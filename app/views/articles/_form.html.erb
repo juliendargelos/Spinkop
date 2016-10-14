@@ -1,4 +1,10 @@
-<%= form_for(@article) do |f| %>
+<% if action_name == 'new' || action_name == 'create' %>
+    <% url = url_for controller: :articles, action: :create %>
+<% else %>
+    <% url = url_for controller: :articles, action: :update, id: @article.id %>
+<% end %>
+
+<%= form_for @article, url: url do |f| %>
   <% if @article.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@article.errors.count, "error") %> prohibited this article from being saved:</h2>
@@ -29,6 +35,8 @@
   </div>
 <% end %>
 
+<%= content_tag :script, nil, type: 'text/javascript', src: '/vendor/tinymce/tinymce.min.js' %>
+
 <%= defer_routes do %>
-	<% defer :search_questions, url_for(controller: :questions, action: :search, format: :json) %>
+	<% defer :search_questions, controller: :questions, action: :search, format: :json %>
 <% end %>

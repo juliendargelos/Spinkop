@@ -5,13 +5,13 @@ Rails.application.routes.draw do
             #get ':slug' => 'themes#show'
             get ':slug/destroy' => 'themes#destroy'
         end
-        resources :questions, param: :slug, except: [:destroy] do
+        resources :questions, param: :slug, except: [:destroy, :new, :edit, :create, :update] do
             collection do
                 #get ':slug' => 'questions#show'
                 get ':slug/destroy' => 'questions#destroy'
                 post 'search' => 'questions#search'
             end
-            resources :articles, except: [:destroy] do
+            resources :articles, except: [:destroy, :new, :edit, :create, :update] do
                 collection do
                     get ':id/destroy' => 'articles#destroy'
                 end
@@ -20,7 +20,18 @@ Rails.application.routes.draw do
     end
 
     get '/' => 'pages#home'
-    get '/questions/search' => 'questions#search', as: 'search_questions'
+    get '/admin' => 'pages#admin'
+
+    get '/questions/new' => 'questions#new'
+    get '/questions/:slug/edit' => 'questions#edit'
+    post '/questions/create' => 'questions#create'
+    patch '/questions/:slug/update' => 'questions#update'
+    post '/questions/search' => 'questions#search'
+
+    get '/articles/new' => 'articles#new'
+    get '/articles/:id/edit' => 'articles#edit'
+    post '/articles/create' => 'articles#create'
+    patch '/articles/:id/update' => 'articles#update'
 
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".

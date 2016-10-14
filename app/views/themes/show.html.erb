@@ -11,14 +11,20 @@
 			</div>
 		</div>
 	</div>
-	<h2>Dernières questions</h2>
-	<nav class="questions wrapper">
-		<% @theme.someQuestions.each do |question| %>
-			<div>
-				<%= link_to question.content, {controller: :questions, action: :show, slug: question.slug, theme_slug: @theme.slug}, {class: :question} %>
-			</div>
-		<% end %>
-    </div>
+	
+	<% questions = @theme.someQuestions %>
+	<% if questions.length == 0 %>
+		<h2>Aucune questions...</h2>
+	<% else %>
+		<h2>Dernières questions</h2>
+		<nav class="questions wrapper">
+			<% @theme.someQuestions.each do |question| %>
+				<div>
+					<%= link_to question.content, {controller: :questions, action: :show, slug: question.slug, theme_slug: @theme.slug}, {class: :question} %>
+				</div>
+			<% end %>
+	    </nav>
+	<% end %>
 </main>
 
 <script type="text/javascript">

@@ -4,7 +4,9 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @question = Question.find_by(slug: params[:question_slug])
+    @theme = @question.theme
+    @articles = Article.where(question_id: @question.id)
   end
 
   # GET /articles/1
@@ -23,6 +25,8 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    @question = @article.question
+    @theme = @article.theme
   end
 
   # POST /articles

@@ -20,7 +20,8 @@ Rails.application.routes.draw do
     end
 
     get '/' => 'pages#home'
-    get '/admin' => 'pages#admin'
+
+    get '/admin' => 'themes#index'
 
     get '/questions/new' => 'questions#new'
     get '/questions/:slug/edit' => 'questions#edit'

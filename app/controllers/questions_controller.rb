@@ -5,7 +5,8 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @theme = Theme.find_by(slug: params[:theme_slug]);
+    @questions = Question.where(theme_id: @theme.id)
   end
 
   # GET /questions/1

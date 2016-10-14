@@ -1,29 +1,24 @@
+<%= render 'partials/header' %>
+<%= render 'partials/admin_nav' %>
+
 <main>
-	<div class="wrapper">
-        <h1>Listing Questions</h1>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Content</th>
-              <th>Theme</th>
-              <th colspan="3"></th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @questions.each do |question| %>
-              <tr>
-                <td><%= question.content %></td>
-                <td><%= question.theme.name %></td>
-                <td><%= link_to 'Show', question %></td>
-                <td><%= link_to 'Edit', edit_question_path(question) %></td>
-                <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-
-        <br>
+    <div class="wrapper">
+		<h1>Listing Questions</h1>
+		<%= link_to 'Retour aux thèmes', controller: :themes, action: :index %>
+		<table>
+			<tbody>
+				<% @questions.each do |question| %>
+					<tr>
+						<td><%= question.content %></td>
+						<td>
+							<%= link_to 'Éditer', action: :edit, theme_slug: @theme.slug, slug: question.slug %>
+						</td>
+						<td>
+							<%= link_to 'Articles', controller: :articles, action: :index, theme_slug: @theme.slug, question_slug: question.slug %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
     </div>
 </main>

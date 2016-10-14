@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to action: :show, theme_slug: @article.theme.slug, question_slug: @article.question.slug, id: @article.id, notice: 'Article was successfully created.' }
+        format.html { redirect_to action: :show, theme_slug: @article.theme.slug, question_slug: @article.question.slug, id: @article.id }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -46,7 +46,7 @@ class ArticlesController < ApplicationController
   def update
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to action: :show, theme_slug: @article.theme.slug, question_slug: @article.question.slug, id: @article.id, notice: 'Article was successfully updated.' }
+        format.html { redirect_to action: :show, theme_slug: @article.theme.slug, question_slug: @article.question.slug, id: @article.id }
         format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit }

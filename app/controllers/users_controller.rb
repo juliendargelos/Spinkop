@@ -26,6 +26,8 @@ class UsersController < ApplicationController
 
 	def update
     	@user.update(user_params)
+		@user.admin = false unless is_admin?
+
 		redirect_to action: :index
 	end
 
@@ -42,7 +44,7 @@ class UsersController < ApplicationController
 	private
 
 		def user_params
-			params.require(:user).permit(:email, :password, :password_confirmation)
+			params.require(:user).permit(:email, :password, :password_confirmation, :admin)
 		end
 
 		def require_admin

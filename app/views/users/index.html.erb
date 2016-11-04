@@ -11,16 +11,20 @@
 					<tr>
 						<td><%= user.email %></td>
 						<td class="actions">
-							<%= link_to get_svg(:edit)+'Modifier', {action: :edit, id: user.id}, title: 'Modifier' %>
-							<%= link_to get_svg(:delete)+'Supprimer', {action: :destroy, id: user.id}, title: 'Supprimer' %>
+                            <% if is_admin? || user.id == current_user.id %>
+							    <%= link_to get_svg(:edit)+'Modifier', {action: :edit, id: user.id}, title: 'Modifier' %>
+							    <%= link_to get_svg(:delete)+'Supprimer', {action: :destroy, id: user.id}, title: 'Supprimer' %>
+                            <% end %>
 						</td>
 					</tr>
 				<% end %>
-                <tr>
-                    <td colspan="2" class="new">
-                        <%= link_to 'Nouvel utilisateur', new_user_path %>
-                    </td>
-                </tr>
+                <% if is_admin? %>
+                    <tr>
+                        <td colspan="2" class="new">
+                            <%= link_to 'Nouvel utilisateur', new_user_path %>
+                        </td>
+                    </tr>
+                <% end %>
 			</tbody>
 		</table>
     </div>

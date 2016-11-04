@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 	before_filter :authorize, only: [:index, :new, :edit, :create, :update, :destroy]
+	before_filter :require_admin, only: [:new, :create]
+	before_filter :require_self_user, only: [:update, :edit, :destroy]
 	before_action :set_user, only: [:edit, :update, :destroy]
 
 	def index
@@ -23,8 +25,8 @@ class UsersController < ApplicationController
 	end
 
 	def update
-	    @user.update(user_params)
-		redirect_to action: :edit, id: @user.id
+    	@user.update(user_params)
+		redirect_to action: :index
 	end
 
 	def destroy
@@ -32,13 +34,26 @@ class UsersController < ApplicationController
 		redirect_to action: :index
 	end
 
+	def self_user?
+		(current_user && current_user.id == @user.id) || is_admin?
+	end
+	helper_method :self_user?
+
 	private
 
-	def user_params
-		params.require(:user).permit(:email, :password, :password_confirmation)
-	end
+		def user_params
+			params.require(:user).permit(:email, :password, :password_confirmation)
+		end
 
-	def set_user
-		@user = User.find(params[:id])
-	end
+		def require_admin
+			redirect_to action: :index unless is_admin?
+		end
+
+		def require_self_user
+			redirect_to action: :index unless self_user?
+		end
+
+		def set_user
+			@user = User.find(params[:id])
+		end
 end

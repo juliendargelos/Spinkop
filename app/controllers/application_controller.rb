@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def is_admin?
+    current_user && current_user.admin === true
+  end
+  helper_method :is_admin?
+
   def authorize
     redirect_to new_session_path unless current_user
   end

@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
-	before_filter :authorize, only: [:index, :new, :edit, :create, :update, :destroy]
-	before_filter :require_admin, only: [:new, :create]
-	before_filter :require_self_user, only: [:update, :edit, :destroy]
+	before_action :authorize, only: [:index, :new, :edit, :create, :update, :destroy]
 	before_action :set_user, only: [:edit, :update, :destroy]
+	before_action :require_admin, only: [:new, :create]
+	before_action :require_self_user, only: [:update, :edit, :destroy]
 
 	def index
 		@users = User.all

@@ -1,4 +1,5 @@
 class ThemesController < ApplicationController
+  before_filter :authorize, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
 
   # GET /themes

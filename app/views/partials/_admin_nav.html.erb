@@ -1,10 +1,9 @@
 <nav class="admin-nav">
 	<div class="wrapper">
-		<% if controller_name != 'themes' || action_name != 'index' %>
-			<%= link_to 'Liste des thèmes', controller: :themes, action: :index %>
-		<% end %>
-		<%= link_to 'Nouveau thème', controller: :themes, action: :new %>
-		<%= link_to 'Nouvelle question', controller: :questions, action: :new %>
-		<%= link_to 'Nouvel article', controller: :articles, action: :new %>
+		<%= admin_nav_item 'Thèmes', controller: :themes, action: :index %>
+		<%= admin_nav_item 'Questions', controller: :questions, action: :new %>
+		<%= admin_nav_item 'Articles', controller: :articles, action: :new %>
+		<%= admin_nav_item 'Utilisateurs', controller: :users, action: :index %>
+		<%= admin_nav_item 'Déconnexion', controller: :sessions, action: :destroy %>
 	</div>
 </nav>

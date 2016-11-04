@@ -1,0 +1,27 @@
+<%= render 'partials/header' %>
+<%= render 'partials/admin_nav' %>
+
+<main>
+    <div class="wrapper">
+		<h1>Utilisateurs</h1>
+
+		<table>
+			<tbody>
+				<% @users.each do |user| %>
+					<tr>
+						<td><%= user.email %></td>
+						<td class="actions">
+							<%= link_to get_svg(:edit)+'Modifier', {action: :edit, id: user.id}, title: 'Modifier' %>
+							<%= link_to get_svg(:delete)+'Supprimer', {action: :destroy, id: user.id}, title: 'Supprimer' %>
+						</td>
+					</tr>
+				<% end %>
+                <tr>
+                    <td colspan="2" class="new">
+                        <%= link_to 'Nouvel utilisateur', new_user_path %>
+                    </td>
+                </tr>
+			</tbody>
+		</table>
+    </div>
+</main>

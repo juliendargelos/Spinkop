@@ -2,12 +2,12 @@ Rails.application.routes.draw do
 
     resources :themes, param: :slug, except: [:destroy] do
         collection do
-            #get ':slug' => 'themes#show'
+            # get ':slug' => 'themes#show'
             get ':slug/destroy' => 'themes#destroy'
         end
         resources :questions, param: :slug, except: [:destroy, :new, :edit, :create, :update] do
             collection do
-                #get ':slug' => 'questions#show'
+                # get ':slug' => 'questions#show'
                 get ':slug/destroy' => 'questions#destroy'
                 post 'search' => 'questions#search'
             end
@@ -19,9 +19,9 @@ Rails.application.routes.draw do
         end
     end
 
-    get '/' => 'pages#home'
+    root to: 'pages#home'
 
-    get '/admin' => 'themes#index'
+    get '/themes' => 'themes#index'
 
     get '/questions/new' => 'questions#new'
     get '/questions/:slug/edit' => 'questions#edit'
@@ -33,6 +33,17 @@ Rails.application.routes.draw do
     get '/articles/:id/edit' => 'articles#edit'
     post '/articles/create' => 'articles#create'
     patch '/articles/:id/update' => 'articles#update'
+
+    get '/users' => 'users#index', as: :users
+    get '/users/:id/edit' => 'users#edit', as: :edit_user
+    patch '/users/:id/update' => 'users#update', as: :update_user
+    get '/users/:id/destroy' => 'users#destroy', as: :destroy_user
+    get '/users/new' => 'users#new', as: :new_user
+    post '/users' => 'users#create', as: :create_user
+
+    get '/login' => 'sessions#new', as: :new_session
+    post '/login' => 'sessions#create', as: :create_session
+    get '/logout' => 'sessions#destroy', as: :destroy_session
 
     # The priority is based upon order of creation: first created -> highest priority.
     # See how all your routes lay out with "rake routes".

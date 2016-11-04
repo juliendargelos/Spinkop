@@ -8,6 +8,11 @@ module ApplicationHelper
 		content_for :title, text
 	end
 
+	def admin_nav_item label, route
+	  selected = :"#{controller_name}" == route[:controller] ? 'selected' : nil
+	  link_to label, { controller: route[:controller], action: route[:action] }, class: selected
+	end
+
 	def current_asset_name
 		"#{controller_name}-#{action_name}"
 	end

@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_filter :authorize, only: [:index, :new, :edit, :create, :update, :destroy]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
   skip_before_filter :verify_authenticity_token, :only => :search
 
